@@ -1,42 +1,38 @@
 #root {
-  max-width: 1280px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  justify-items: center;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.image-gallery .image-card-wrapper:nth-child(1) {
+  background-color: #a02626;
+  grid-column: span 2;
+  grid-row: span 2;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.image-card {
+  border: 2px solid #ccc;
+  padding: 8px;
+  transition: transform 0.2s ease-in-out;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.image-card img {
+  max-width: 100%;
+  height: auto;
 }
 
-.card {
-  padding: 2em;
+.image-card.selected {
+  border-color: #007bff;
+  transform: scale(1.05);
 }
 
-.read-the-docs {
-  color: #888;
+.image-card.featured {
+  border-color: #ff5733;
+  grid-column: span 2;
+  grid-row: span 2;
 }
