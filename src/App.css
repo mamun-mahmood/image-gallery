@@ -32,18 +32,31 @@ main {
   border-radius: 20px;
   cursor: move;
   overflow: hidden;
-  /* transition */
-  transition: all 0.3s ease-in-out;
+  position: relative;
 }
 .image-card:hover {
-  opacity: 0.5;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  /* shadow over the element */
+}
+.image-card:hover > input {
+  display: block;
 }
 .image-card img {
   max-width: 100%;
   height: 100%;
+  object-fit: cover;
 }
-
+.image-card input {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
 .dragging img {
   opacity: 0.5;
+}
+.hidden {
+  display: none;
 }

@@ -1,13 +1,17 @@
+export interface NavbarProps {
+  selectedImages: Image[];
+}
+
 export interface ImageGalleryProps {
-  images: Image[];
-  selectedImages: string[];
-  setSelectedImages: React.Dispatch<React.SetStateAction<string[]>>;
+  allImages: Image[];
+  setAllImages: React.Dispatch<React.SetStateAction<Image[]>>;
 }
 export interface Image {
   id: string;
   url: string;
   alt: string;
   isDeleted: boolean;
+  isSelected: boolean;
 }
 export interface ImageCardProps {
   image: Image;
@@ -16,6 +20,4 @@ export interface ImageCardProps {
   setAllImages: React.Dispatch<React.SetStateAction<Image[]>>;
   draggingImageId: string;
   setDraggingImageId: React.Dispatch<React.SetStateAction<string>>;
-  selectedImages: string[];
-  setSelectedImages: React.Dispatch<React.SetStateAction<string[]>>;
 }

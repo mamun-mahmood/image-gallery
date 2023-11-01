@@ -1,7 +1,7 @@
 import { ImageCardProps } from "../utils/types";
 import { FC, useRef } from "react";
 const ImageCard: FC<ImageCardProps> = ({
-  image: { id, url, alt },
+  image: { id, url, alt, isSelected },
   allImages,
   setAllImages,
   draggingImageId,
@@ -13,9 +13,7 @@ const ImageCard: FC<ImageCardProps> = ({
     imageCard?.classList.add("dragging");
     setDraggingImageId(id);
   };
-  const handleDragOver = (e: any, dragginOverImageId: string) => {
-    // e.preventDefault();
-
+  const handleDragOver = (dragginOverImageId: string) => {
     if (draggingImageId !== dragginOverImageId) {
       const draggingImage = allImages.find(
         (image) => image.id === draggingImageId
@@ -35,16 +33,32 @@ const ImageCard: FC<ImageCardProps> = ({
     const imageCard = imageCardRef.current;
     imageCard?.classList.remove("dragging");
   };
+  const handleCheckboxChange = (id: string) => {
+    const newImages = allImages.map((image) => {
+      if (image.id === id) {
+        return { ...image, isSelected: !image.isSelected };
+      }
+      return image;
+    });
+    setAllImages(newImages);
+  };
+
   return (
     <div
       ref={imageCardRef}
       className="image-card"
       draggable
       onDragStart={() => handleDragStart(id)}
-      onDragOver={(e) => handleDragOver(e, id)}
+      onDragOver={() => handleDragOver(id)}
       onDragEnd={handleDragEnd}
     >
       <img draggable="false" src={url} alt={alt} />
+      <input
+        className={`${isSelected ? "" : "hidden"}`}
+        type="checkbox"
+        defaultChecked={isSelected}
+        onChange={() => handleCheckboxChange(id)}
+      />
     </div>
   );
 };
