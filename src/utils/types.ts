@@ -1,5 +1,7 @@
 export interface ImageGalleryProps {
   images: Image[];
+  selectedImages: string[];
+  setSelectedImages: React.Dispatch<React.SetStateAction<string[]>>;
 }
 export interface Image {
   id: string;
@@ -14,4 +16,6 @@ export interface ImageCardProps {
   setAllImages: React.Dispatch<React.SetStateAction<Image[]>>;
   draggingImageId: string;
   setDraggingImageId: React.Dispatch<React.SetStateAction<string>>;
+  selectedImages: string[];
+  setSelectedImages: React.Dispatch<React.SetStateAction<string[]>>;
 }

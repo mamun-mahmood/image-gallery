@@ -37,6 +37,7 @@ const ImageCard: FC<ImageCardProps> = ({
   };
   return (
     <div
+      ref={imageCardRef}
       className="image-card"
       draggable
       onDragStart={() => handleDragStart(id)}

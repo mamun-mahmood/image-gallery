@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 import ImageGallery from "./components/Gallery";
 import Navbar from "./components/Navbar";
@@ -71,13 +72,19 @@ function App() {
       isDeleted: false,
     },
   ];
+  const [selectedImages, setSelectedImages] = useState<string[]>([]);
+
   return (
     <>
       <header>
-        <Navbar />
+        <Navbar selectedImages={selectedImages} />
       </header>
       <main>
-        <ImageGallery images={images} />
+        <ImageGallery
+          images={images}
+          selectedImages={selectedImages}
+          setSelectedImages={setSelectedImages}
+        />
       </main>
     </>
   );

@@ -2,7 +2,11 @@ import { FC, useRef, useState } from "react";
 import { ImageGalleryProps } from "../utils/types";
 import ImageCard from "./ImageCard";
 
-const ImageGallery: FC<ImageGalleryProps> = ({ images }) => {
+const ImageGallery: FC<ImageGalleryProps> = ({
+  images,
+  selectedImages,
+  setSelectedImages,
+}) => {
   const galleryRef = useRef<HTMLDivElement>(null);
   // const deleteSelectedImages = () => {};
   const [allImages, setAllImages] = useState(images);
@@ -19,6 +23,8 @@ const ImageGallery: FC<ImageGalleryProps> = ({ images }) => {
           setAllImages={setAllImages}
           draggingImageId={draggingImageId}
           setDraggingImageId={setDraggingImageId}
+          selectedImages={selectedImages}
+          setSelectedImages={setSelectedImages}
         />
       ))}
       {/* <button onClick={deleteSelectedImages}>Delete Selected</button> */}
