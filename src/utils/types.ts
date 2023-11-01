@@ -5,7 +5,6 @@ export interface Image {
   id: string;
   url: string;
   alt: string;
-  isFeatured: boolean;
   isDeleted: boolean;
 }
 export interface ImageCardProps {

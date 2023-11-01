@@ -14,7 +14,7 @@ const ImageCard: FC<ImageCardProps> = ({
     setDraggingImageId(id);
   };
   const handleDragOver = (e: any, dragginOverImageId: string) => {
-    e.preventDefault();
+    // e.preventDefault();
 
     if (draggingImageId !== dragginOverImageId) {
       const draggingImage = allImages.find(
