@@ -1,23 +1,26 @@
 import { FC } from "react";
 import { NavbarProps } from "../utils/types";
 
-const Navbar: FC<NavbarProps> = ({ selectedImages }) => {
-  const selectedImagesLength = selectedImages.filter(
-    (image) => image.isSelected
-  ).length;
+const Navbar: FC<NavbarProps> = ({ allImages, setAllImages }) => {
+  const selectedImagesLength =
+    allImages.filter((image) => image.isSelected).length || false;
+  const handleDeleteImages = () => {
+    const newImages = allImages.filter((image) => !image.isSelected);
+    setAllImages(newImages);
+  };
   return (
     <nav>
       {selectedImagesLength ? (
         <h1>
-          {selectedImagesLength} Selected{" "}
-          {selectedImagesLength > 1 ? "Images" : "Image"}
+          {selectedImagesLength} {selectedImagesLength > 1 ? "Files" : "File"}{" "}
+          Selected
         </h1>
       ) : (
         <h1>Image Gallery</h1>
       )}
-      <div>
-        <button>Delete files</button>
-      </div>
+      {selectedImagesLength && (
+        <button onClick={handleDeleteImages}>Delete files</button>
+      )}
     </nav>
   );
 };

@@ -11,7 +11,19 @@ nav {
   margin-bottom: 1rem;
   border-bottom: 1px solid #ccc;
   border-radius: 10px 10px 0 0;
-  padding: 0.5rem 2rem;
+  padding: 0.1rem 2rem;
+}
+nav button {
+  padding: 0.5rem 1rem;
+  border: none;
+  font-size: 18px;
+  background-color: transparent;
+  cursor: pointer;
+  color: red;
+}
+nav button:hover {
+  transform: scale(1.1);
+  transition: all 0.1s ease-in-out;
 }
 main {
   padding: 1rem 2rem;
@@ -48,8 +60,8 @@ main {
 }
 .image-card input {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 20px;
+  left: 20px;
   width: 20px;
   height: 20px;
   cursor: pointer;

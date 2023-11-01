@@ -1,5 +1,6 @@
 export interface NavbarProps {
-  selectedImages: Image[];
+  allImages: Image[];
+  setAllImages: React.Dispatch<React.SetStateAction<Image[]>>;
 }
 
 export interface ImageGalleryProps {

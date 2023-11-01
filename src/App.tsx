@@ -68,7 +68,7 @@ function App() {
   return (
     <>
       <header>
-        <Navbar selectedImages={allImages.filter((e) => e.isSelected)} />
+        <Navbar allImages={allImages} setAllImages={setAllImages} />
       </header>
       <main>
         <ImageGallery allImages={allImages} setAllImages={setAllImages} />
