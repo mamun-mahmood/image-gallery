@@ -1,24 +1,27 @@
-// ImageGallery.js
-
-import { FC, useState } from "react";
-import ImageCard from "./ImageCard";
+import { FC, useRef, useState } from "react";
 import { ImageGalleryProps } from "../utils/types";
+import ImageCard from "./ImageCard";
 
 const ImageGallery: FC<ImageGalleryProps> = ({ images }) => {
-  const [galleryOrder, setGalleryOrder] = useState([
-    ...images.map((image) => image.id),
-  ]);
-  const deleteSelectedImages = () => {
-    // Implement the logic to delete selected images from the gallery
-  };
+  const galleryRef = useRef<HTMLDivElement>(null);
+  // const deleteSelectedImages = () => {};
+  const [allImages, setAllImages] = useState(images);
+  const [draggingImageId, setDraggingImageId] = useState<string>("");
+
   return (
-    <div className="image-gallery">
-      {galleryOrder.map((imageId) => (
-        <div className="image-card-wrapper" key={imageId} draggable>
-          <ImageCard image={images[imageId - 1]} />
-        </div>
+    <div className="image-gallery" ref={galleryRef}>
+      {allImages.map((image) => (
+        <ImageCard
+          key={image.id}
+          galleryRef={galleryRef}
+          image={image}
+          allImages={allImages}
+          setAllImages={setAllImages}
+          draggingImageId={draggingImageId}
+          setDraggingImageId={setDraggingImageId}
+        />
       ))}
-      <button onClick={deleteSelectedImages}>Delete Selected</button>
+      {/* <button onClick={deleteSelectedImages}>Delete Selected</button> */}
     </div>
   );
 };

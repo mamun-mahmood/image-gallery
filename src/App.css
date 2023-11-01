@@ -9,30 +9,26 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 16px;
   justify-items: center;
+  background: transparent;
 }
-.image-gallery .image-card-wrapper:nth-child(1) {
-  background-color: #a02626;
+.image-gallery .image-card:nth-child(1) {
   grid-column: span 2;
   grid-row: span 2;
 }
 .image-card {
   border: 2px solid #ccc;
-  padding: 8px;
-  transition: transform 0.2s ease-in-out;
+  border-radius: 20px;
+  cursor: move;
+  overflow: hidden;
+  /* transition */
+  transition: all 0.3s ease-in-out;
 }
 
 .image-card img {
   max-width: 100%;
-  height: auto;
+  height: 100%;
 }
 
-.image-card.selected {
-  border-color: #007bff;
-  transform: scale(1.05);
-}
-
-.image-card.featured {
-  border-color: #ff5733;
-  grid-column: span 2;
-  grid-row: span 2;
+.dragging img {
+  opacity: 0.5;
 }
