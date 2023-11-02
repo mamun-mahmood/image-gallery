@@ -1,5 +1,5 @@
 import { ImageCardProps } from "../utils/types";
-import { FC, useRef } from "react";
+import React, { FC, useRef } from "react";
 const ImageCard: FC<ImageCardProps> = ({
   image: { id, url, alt, isSelected },
   allImages,
@@ -7,23 +7,29 @@ const ImageCard: FC<ImageCardProps> = ({
   draggingImageId,
   setDraggingImageId,
 }) => {
-  const imageCardRef = useRef<HTMLDivElement>(null);
+  const imageCardRef = useRef<any>(null);
   const handleDragStart = (id: string) => {
     const imageCard = imageCardRef.current;
     imageCard?.classList.add("dragging");
     setDraggingImageId(id);
   };
-  const handleDragOver = (dragginOverImageId: string) => {
-    if (draggingImageId !== dragginOverImageId) {
+  const handleDragOver = (
+    _e: React.DragEvent<HTMLDivElement>,
+    draggingOverImageId: string
+  ) => {
+    if (draggingImageId !== draggingOverImageId) {
+      const draggingImageIndex = allImages.findIndex(
+        (image) => image.id === draggingImageId
+      );
+      const draggingOverImageIndex = allImages.findIndex(
+        (image) => image.id === draggingOverImageId
+      );
+
       const draggingImage = allImages.find(
         (image) => image.id === draggingImageId
       );
-      const draggingOverImage = allImages.find(
-        (image) => image.id === dragginOverImageId
-      );
-      const draggingImageIndex = allImages.indexOf(draggingImage!);
-      const draggingOverImageIndex = allImages.indexOf(draggingOverImage!);
       const newImages = [...allImages];
+
       newImages.splice(draggingImageIndex, 1);
       newImages.splice(draggingOverImageIndex, 0, draggingImage!);
       setAllImages(newImages);
@@ -31,7 +37,9 @@ const ImageCard: FC<ImageCardProps> = ({
   };
   const handleDragEnd = () => {
     const imageCard = imageCardRef.current;
-    imageCard?.classList.remove("dragging");
+    setTimeout(() => {
+      imageCard?.classList.remove("dragging");
+    }, 100);
   };
   const handleCheckboxChange = (id: string) => {
     const newImages = allImages.map((image) => {
@@ -49,7 +57,7 @@ const ImageCard: FC<ImageCardProps> = ({
       className="image-card"
       draggable
       onDragStart={() => handleDragStart(id)}
-      onDragOver={() => handleDragOver(id)}
+      onDragOver={(e) => handleDragOver(e, id)}
       onDragEnd={handleDragEnd}
     >
       <img draggable="false" src={url} alt={alt} />
