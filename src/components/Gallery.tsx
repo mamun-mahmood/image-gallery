@@ -10,7 +10,7 @@ const ImageGallery: FC<ImageGalleryProps> = ({ allImages, setAllImages }) => {
       {allImages.map((image) => (
         <Suspense
           key={image.id}
-          // fallback={<div className="image-card">Loading...</div>}
+          fallback={<div className="image-card">Loading...</div>}
         >
           <ImageCard
             image={image}
