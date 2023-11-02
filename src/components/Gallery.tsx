@@ -4,8 +4,6 @@ import ImageCard from "./ImageCard";
 
 const ImageGallery: FC<ImageGalleryProps> = ({ allImages, setAllImages }) => {
   const galleryRef = useRef<HTMLDivElement>(null);
-  // const deleteSelectedImages = () => {};
-
   const [draggingImageId, setDraggingImageId] = useState<string>("");
 
   return (
@@ -21,7 +19,18 @@ const ImageGallery: FC<ImageGalleryProps> = ({ allImages, setAllImages }) => {
           setDraggingImageId={setDraggingImageId}
         />
       ))}
-      {/* <button onClick={deleteSelectedImages}>Delete Selected</button> */}
+      <div className="image-card add-image">
+        <div>
+          <img
+            draggable="false"
+            width={"40px"}
+            height={"40px"}
+            src="/images/image-icon.png"
+            alt="Image Icon"
+          />
+        </div>
+        <h4>Add Images</h4>
+      </div>
     </div>
   );
 };

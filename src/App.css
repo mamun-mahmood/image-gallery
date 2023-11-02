@@ -72,3 +72,11 @@ main {
 .hidden {
   display: none;
 }
+.add-image {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: not-allowed;
+  width: 100%;
+}
