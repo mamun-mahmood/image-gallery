@@ -5,7 +5,6 @@ import ImageCard from "./ImageCard";
 const ImageGallery: FC<ImageGalleryProps> = ({ allImages, setAllImages }) => {
   const galleryRef = useRef<HTMLDivElement>(null);
   const [draggingImageId, setDraggingImageId] = useState<string>("");
-
   return (
     <div className="image-gallery" ref={galleryRef}>
       {allImages.map((image) => (

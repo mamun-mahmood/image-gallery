@@ -2,12 +2,15 @@ import { FC } from "react";
 import { NavbarProps } from "../utils/types";
 
 const Navbar: FC<NavbarProps> = ({ allImages, setAllImages }) => {
+  // get the length of selected images
   const selectedImagesLength =
     allImages.filter((image) => image.isSelected).length || false;
+  // delete selected images
   const handleDeleteImages = () => {
     const newImages = allImages.filter((image) => !image.isSelected);
     setAllImages(newImages);
   };
+  // uncheck all images
   const handleCheckboxChange = () => {
     const newImages = allImages.map((image) => {
       return { ...image, isSelected: false };

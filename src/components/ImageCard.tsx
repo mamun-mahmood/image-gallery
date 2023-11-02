@@ -8,7 +8,9 @@ const ImageCard: FC<ImageCardProps> = ({
   setDraggingImageId,
 }) => {
   const imageCardRef = useRef<any>(null);
+  // handle Drag Start events
   const handleDragStart = (id: string) => {
+    // adding dragging class to image card to reduce opacity
     const imageCard = imageCardRef.current;
     imageCard?.classList.add("dragging");
     setDraggingImageId(id);
@@ -29,7 +31,6 @@ const ImageCard: FC<ImageCardProps> = ({
         (image) => image.id === draggingImageId
       );
       const newImages = [...allImages];
-
       newImages.splice(draggingImageIndex, 1);
       newImages.splice(draggingOverImageIndex, 0, draggingImage!);
       setAllImages(newImages);

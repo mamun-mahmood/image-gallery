@@ -61,9 +61,11 @@ function App() {
       alt: "Image 11",
     },
   ];
+  // add isDeleted and isSelected properties to each image
   const imageData = images.map((image) => {
     return { ...image, isDeleted: false, isSelected: false };
   });
+  // set allImages to imageData
   const [allImages, setAllImages] = useState(imageData);
   return (
     <>
