@@ -8,13 +8,27 @@ const Navbar: FC<NavbarProps> = ({ allImages, setAllImages }) => {
     const newImages = allImages.filter((image) => !image.isSelected);
     setAllImages(newImages);
   };
+  const handleCheckboxChange = () => {
+    const newImages = allImages.map((image) => {
+      return { ...image, isSelected: false };
+    });
+    setAllImages(newImages);
+  };
+
   return (
     <nav>
       {selectedImagesLength ? (
-        <h1>
-          {selectedImagesLength} {selectedImagesLength > 1 ? "Files" : "File"}{" "}
-          Selected
-        </h1>
+        <div className="selected-header">
+          <input
+            type="checkbox"
+            defaultChecked={true}
+            onChange={handleCheckboxChange}
+          />
+          <h1>
+            {selectedImagesLength} {selectedImagesLength > 1 ? "Files" : "File"}{" "}
+            Selected
+          </h1>
+        </div>
       ) : (
         <h1>Image Gallery</h1>
       )}
