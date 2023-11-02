@@ -1,6 +1,6 @@
-import { FC, useRef, useState } from "react";
+import { FC, Suspense, lazy, useRef, useState } from "react";
 import { ImageGalleryProps } from "../utils/types";
-import ImageCard from "./ImageCard";
+const ImageCard = lazy(() => import("./ImageCard"));
 
 const ImageGallery: FC<ImageGalleryProps> = ({ allImages, setAllImages }) => {
   const galleryRef = useRef<HTMLDivElement>(null);
@@ -8,15 +8,19 @@ const ImageGallery: FC<ImageGalleryProps> = ({ allImages, setAllImages }) => {
   return (
     <div className="image-gallery" ref={galleryRef}>
       {allImages.map((image) => (
-        <ImageCard
+        <Suspense
           key={image.id}
-          galleryRef={galleryRef}
-          image={image}
-          allImages={allImages}
-          setAllImages={setAllImages}
-          draggingImageId={draggingImageId}
-          setDraggingImageId={setDraggingImageId}
-        />
+          fallback={<div className="image-card">Loading...</div>}
+        >
+          <ImageCard
+            image={image}
+            allImages={allImages}
+            galleryRef={galleryRef}
+            setAllImages={setAllImages}
+            draggingImageId={draggingImageId}
+            setDraggingImageId={setDraggingImageId}
+          />
+        </Suspense>
       ))}
       <div className="add-image">
         <img

@@ -54,6 +54,8 @@ main {
   cursor: move;
   overflow: hidden;
   position: relative;
+  width: 100%;
+  height: 100%;
 }
 .image-card:hover {
   box-shadow: 0 0 10px rgba(35, 35, 35, 0.2);
