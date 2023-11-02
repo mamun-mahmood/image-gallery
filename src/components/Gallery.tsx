@@ -19,16 +19,14 @@ const ImageGallery: FC<ImageGalleryProps> = ({ allImages, setAllImages }) => {
           setDraggingImageId={setDraggingImageId}
         />
       ))}
-      <div className="image-card add-image">
-        <div>
-          <img
-            draggable="false"
-            width={"40px"}
-            height={"40px"}
-            src="/images/image-icon.png"
-            alt="Image Icon"
-          />
-        </div>
+      <div className="add-image">
+        <img
+          draggable="false"
+          width={"40px"}
+          height={"40px"}
+          src="/images/image-icon.png"
+          alt="Image Icon"
+        />
         <h4>Add Images</h4>
       </div>
     </div>

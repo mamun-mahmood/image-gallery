@@ -54,7 +54,6 @@ main {
   cursor: move;
   overflow: hidden;
   position: relative;
-  transition: transform 0.5s ease;
 }
 .image-card:hover {
   box-shadow: 0 0 10px rgba(35, 35, 35, 0.2);
@@ -104,10 +103,25 @@ main {
   display: none;
 }
 .add-image {
+  border: 2px solid #ccc;
+  border-radius: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: not-allowed;
   width: 100%;
+}
+
+/* media for below medium screen */
+@media (max-width: 800px) {
+  .image-gallery {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+/* media for below small screen */
+@media (max-width: 400px) {
+  .image-gallery {
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  }
 }
