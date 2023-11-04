@@ -1,18 +1,20 @@
-import { FC } from "react";
-import { NavbarProps } from "../utils/types";
+import { useContext } from "react";
+import { Image } from "../utils/types";
+import { AppContext } from "../App";
 
-const Navbar: FC<NavbarProps> = ({ allImages, setAllImages }) => {
+const Navbar = () => {
+  const { allImages, setAllImages } = useContext(AppContext);
   // get the length of selected images
   const selectedImagesLength =
-    allImages.filter((image) => image.isSelected).length || false;
+    allImages.filter((image: Image) => image.isSelected).length || false;
   // delete selected images
   const handleDeleteImages = () => {
-    const newImages = allImages.filter((image) => !image.isSelected);
+    const newImages = allImages.filter((image: Image) => !image.isSelected);
     setAllImages(newImages);
   };
   // uncheck all images
   const handleCheckboxChange = () => {
-    const newImages = allImages.map((image) => {
+    const newImages = allImages.map((image: Image) => {
       return { ...image, isSelected: false };
     });
     setAllImages(newImages);

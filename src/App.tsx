@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { createContext, useState } from "react";
 import "./App.css";
 import ImageGallery from "./components/Gallery";
 import Navbar from "./components/Navbar";
-
+// App context is used to store all images
+export const AppContext = createContext<any>(null);
 function App() {
   const images = [
     {
@@ -62,20 +63,16 @@ function App() {
     },
   ];
   // add isDeleted and isSelected properties to each image
-  const imageData = images.map((image) => {
-    return { ...image, isDeleted: false, isSelected: false };
-  });
-  // set allImages to imageData
-  const [allImages, setAllImages] = useState(imageData);
+  const [allImages, setAllImages] = useState(
+    images.map((image) => {
+      return { ...image, isSelected: false };
+    })
+  );
   return (
-    <>
-      <header>
-        <Navbar allImages={allImages} setAllImages={setAllImages} />
-      </header>
-      <main>
-        <ImageGallery allImages={allImages} setAllImages={setAllImages} />
-      </main>
-    </>
+    <AppContext.Provider value={{ allImages, setAllImages }}>
+      <Navbar />
+      <ImageGallery />
+    </AppContext.Provider>
   );
 }
 

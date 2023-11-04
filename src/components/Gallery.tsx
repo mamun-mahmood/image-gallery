@@ -1,25 +1,27 @@
-import { FC, Suspense, lazy, useRef, useState } from "react";
-import { ImageGalleryProps } from "../utils/types";
-const ImageCard = lazy(() => import("./ImageCard"));
+import { Suspense, lazy, useContext, useEffect, useRef } from "react";
+import { Image } from "../utils/types";
+import Sortable from "sortablejs";
+import { AppContext } from "../App";
 
-const ImageGallery: FC<ImageGalleryProps> = ({ allImages, setAllImages }) => {
+const ImageCard = lazy(() => import("./ImageCard"));
+const ImageGallery = () => {
+  const { allImages } = useContext(AppContext);
+
   const galleryRef = useRef<HTMLDivElement>(null);
-  const [draggingImageId, setDraggingImageId] = useState<string>("");
+  useEffect(() => {
+    const sortable = Sortable.create(galleryRef.current!, {
+      animation: 300,
+    });
+    return () => sortable.destroy();
+  }, []);
   return (
     <div className="image-gallery" ref={galleryRef}>
-      {allImages.map((image) => (
+      {allImages.map((image: Image) => (
         <Suspense
           key={image.id}
           fallback={<div className="image-card">Loading...</div>}
         >
-          <ImageCard
-            image={image}
-            allImages={allImages}
-            galleryRef={galleryRef}
-            setAllImages={setAllImages}
-            draggingImageId={draggingImageId}
-            setDraggingImageId={setDraggingImageId}
-          />
+          <ImageCard image={image} />
         </Suspense>
       ))}
       <div className="add-image">
